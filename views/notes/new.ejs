@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
+    <link rel="stylesheet" href="/style.css">
+    <title>Add new note</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Add new note</h1>
+    <form method="POST" action="../notes">
+      <div>
+        <label for="title">Title: </label> 
+        <input type="text" name="title">
+      </div>
+      <div>
+        <label for="content">Content: </label> 
+        <input type="text" name="content">
+      </div>
+      <div>
+          <button>Submit</button>
+      </div>
+    </form>
+  </body>
+</html>

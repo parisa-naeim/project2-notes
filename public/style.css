@@ -1,3 +1,23 @@
 nav a {
   padding-right: 10px;
 }
+
+.notes-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 300px;
+}
+
+.note {
+  border: 1px solid #818181;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 150px;
+  height: 100px;
+}
+
+.note h4 {
+  margin: 0;
+}
