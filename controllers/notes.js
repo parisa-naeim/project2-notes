@@ -28,3 +28,18 @@ router.post("/", async (req, res) => {
     res.redirect("/");
   }
 });
+
+// update
+router.put("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    const index = user.notes.findIndex((item) => item._id == req.params.id);
+    user.notes[index].title = req.body.title;
+    user.notes[index].content = req.body.content;
+    await user.save();
+    res.redirect(`/users/${req.session.user._id}/notes`);
+  } catch (error) {
+    console.log(error);
+    res.redirect(`/users/${req.session.user._id}/notes`);
+  }
+});
