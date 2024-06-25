@@ -7,23 +7,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link" id="nav-item-home" aria-current="page" href="/">Home</a>
         </li>
 
         <% if(user) { %>
         <li class="nav-item">
-          <a class="nav-link" href="/users/<%=user._id%>/notes">Notes</a>
+          <a class="nav-link" href="/users/<%=user._id%>/notes" id="nav-item-notes">Notes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/auth/sign-out">Sign out</a>
+          <a class="nav-link" href="/auth/sign-out" id="nav-item-signout">Sign out</a>
         </li>
         <% } else { %>
 
         <li class="nav-item">
-          <a class="nav-link" href="/auth/sign-in">Sign in</a>
+          <a class="nav-link" href="/auth/sign-in" id="nav-item-signin">Sign in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/auth/sign-up">Sign up</a>
+          <a class="nav-link" href="/auth/sign-up" id="nav-item-signup">Sign up</a>
         </li>
         <% } %>
       </ul>
@@ -34,3 +34,22 @@
     </div>
   </div>
 </nav>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const currentUrl = window.location.pathname;
+    
+    if (currentUrl.includes('/notes')) {
+      document.getElementById('nav-item-notes').classList.add('active', 'h5');
+    } else if (currentUrl.includes('/sign-out')) {
+      document.getElementById('nav-item-signout').classList.add('active');
+    } else if (currentUrl.includes('/sign-in')) {
+      document.getElementById('nav-item-signin').classList.add('active');
+    } else if (currentUrl.includes('/sign-up')) {
+      document.getElementById('nav-item-signup').classList.add('active');
+    } else{
+      document.getElementById('nav-item-home').classList.add('active');
+    }
+  });
+</script>
