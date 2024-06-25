@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css" />
-    <link rel="stylesheet" href="/style.css">
     <title>My Notes</title>
+    <%- include('../partials/_head.ejs') %>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>My Notes</h1>
-
+    <div class="container mt-5">
+    <h4>My Notes</h4>
     <div class="notes-container">
         <% notes.forEach(note => { %>
             <div class="note">
@@ -22,8 +17,6 @@
             </div>
         <%}); %>
     </div>
-
-
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -47,6 +40,7 @@
     </div>
 
     <a href="notes/new">Add New Note</a>
+  </div>
 
     <script>
       // Get the modal
