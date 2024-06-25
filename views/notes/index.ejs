@@ -30,10 +30,18 @@
     <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
-        <form action="" method="POST">
+        <form action="" method="POST" id="form-update">
           <input type="text" name="title" id="edit-modal-title">
           <textarea type="text" name="content" id="edit-modal-content"></textarea>
           <button type="submit">Update</button>
+          <!-- <button type="submit">Delete</button> -->
+        </form>
+
+
+        <form action="" method="POST" id="form-delete">
+          <!-- <input type="text" name="title" id="delete-modal-title"> -->
+          <!-- <textarea type="text" name="content" id="delete-modal-content"></textarea> -->
+          <button type="submit">Delete</button>
         </form>
       </div>
     </div>
@@ -57,7 +65,9 @@
           modal.style.display = "block";
           document.getElementById("edit-modal-title").value = element.children[0].innerHTML;
           document.getElementById("edit-modal-content").value = element.children[1].innerHTML;
-          document.querySelector(".modal-content form").action = `/users/<%= user._id%>/notes/${element.children[2].value}?_method=PUT`;
+          document.querySelector(".modal-content #form-update").action = `/users/<%= user._id%>/notes/${element.children[2].value}?_method=PUT`;
+          document.querySelector(".modal-content #form-delete").action = `/users/<%= user._id%>/notes/${element.children[2].value}?_method=DELETE`;
+          // notes/user._id?_method=DELETE
         }
       })
       

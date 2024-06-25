@@ -43,3 +43,23 @@ router.put("/:id", async (req, res) => {
     res.redirect(`/users/${req.session.user._id}/notes`);
   }
 });
+
+// delete
+console.log("first log");
+router.delete("/:id", async (req, res) => {
+  try {
+    console.log("second log;jdg");
+    const user = await User.findById(req.session.user._id);
+    const index = user.notes.findIndex((item) => item._id == req.params.id);
+    console.log(index);
+    // user.notes[index].title = req.body.title;
+    // user.notes[index].content = req.body.content;
+    console.log(user);
+    user.notes.splice(index, 0);
+    await user.save();
+    res.redirect(`/users/${req.session.user._id}/notes`);
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
+  }
+});
