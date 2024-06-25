@@ -10,31 +10,38 @@
     <h4>My Notes</h4>
     <div class="notes-container">
         <% notes.forEach(note => { %>
-            <div class="note">
-                <h4><%= note.title %></h4>
-                 <p><%= note.content %></p>
-                 <input value="<%= note._id %>" type="hidden">
+          <div class="card text-bg-warning mb-3 note" role="button">
+            <div class="card-body">
+              <h5 class="card-title"><%= note.title %></h5>
+              <p class="card-text pre-wrap"><%= note.content %></p>
+              <input value="<%= note._id %>" type="hidden">
             </div>
+          </div>
         <%}); %>
     </div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
     <!-- Modal content -->
-      <div class="modal-content">
+      <div class="modal-content card text-bg-warning mb-3 container">
         <span class="close">&times;</span>
         <form action="" method="POST" id="form-update">
-          <input type="text" name="title" id="edit-modal-title">
-          <textarea type="text" name="content" id="edit-modal-content"></textarea>
-          <button type="submit">Update</button>
-          <!-- <button type="submit">Delete</button> -->
+          <div class="mb-3">
+            <input type="text" class="form-control" name="title" id="edit-modal-title">
+          </div>
+          <div class="mb-3">
+            <textarea type="text" class="form-control" name="content" 
+            style="min-height: 150px;"
+            id="edit-modal-content">
+            </textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Update</button>
+          <a class="btn btn-danger"
+            onclick="event.preventDefault(); document.getElementById('form-delete').submit();">Delete</a>
         </form>
 
-
-        <form action="" method="POST" id="form-delete">
-          <!-- <input type="text" name="title" id="delete-modal-title"> -->
-          <!-- <textarea type="text" name="content" id="delete-modal-content"></textarea> -->
-          <button type="submit">Delete</button>
+        <form action="" method="POST" id="form-delete" style="display: none;">
+          <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       </div>
     </div>
@@ -53,7 +60,7 @@
       var span = document.getElementsByClassName("close")[0];
   
       // When the user clicks the button, open the modal
-      document.querySelectorAll("div .note")
+      document.querySelectorAll("div .card-body")
       .forEach(element => {
         element.onclick = function() {
           modal.style.display = "block";

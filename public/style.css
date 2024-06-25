@@ -12,20 +12,18 @@ nav a {
 }
 
 .note {
-  border: 1px solid #ffe675;
-  background-color: #ffe675;
-  border-radius: 5px;
-  padding: 5px 10px;
-  min-width: 150px;
-  min-height: 100px;
-  cursor: pointer;
+  max-width: 18rem;
+  min-width: 18rem;
+  min-height: 20rem;
+  max-height: 20rem;
+  overflow: hidden;
 }
 
 .note h4 {
   margin: 0;
 }
 
-.note p {
+.pre-wrap {
   white-space: pre-wrap;
 }
 
@@ -43,11 +41,11 @@ nav a {
 }
 
 .modal-content {
-  background-color: #ffe675;
+  /* background-color: #ffe675; */
   margin: 15% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+  /* width: 50%; Could be more or less, depending on screen size */
 }
 
 .close {
@@ -66,6 +64,6 @@ nav a {
 
 .modal-content input,
 .modal-content textarea {
-  background-color: #ffe988;
+  /* background-color: #ffe988; */
   border: 1px solid #e2ce72;
 }
