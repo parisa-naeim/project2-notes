@@ -10,7 +10,7 @@
     <h4>My Notes</h4>
     <div class="notes-container">
         <% notes.forEach(note => { %>
-          <div class="card text-bg-warning mb-3 note" role="button">
+          <div class="card mb-3 note" style="background-color: #FFF3CD;" role="button">
             <div class="card-body">
               <h5 class="card-title"><%= note.title %></h5>
               <p class="card-text pre-wrap"><%= note.content %></p>
@@ -23,7 +23,7 @@
     <!-- The Modal -->
     <div id="myModal" class="modal">
     <!-- Modal content -->
-      <div class="modal-content card text-bg-warning mb-3 container">
+      <div class="modal-content card mb-3 container" style="background-color: #FFF3CD;">
         <span class="close">&times;</span>
         <form action="" method="POST" id="form-update">
           <div class="mb-3">
