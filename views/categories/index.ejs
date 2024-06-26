@@ -8,12 +8,12 @@
     <%- include('../partials/_navbar.ejs') %>
     <div class="container mt-5">
     <h4>My Categories</h4>
-    <div class="mt-5">
+    <div class="mt-5 notes-container">
         <% categories.forEach(category => { %>
-          <div class="card mb-3 note" role="button">
+          <div class="card mb-3" style="background-color: <%= getNoteBgColor(category.color) %>; min-width: 150px;" role="button">
             <div class="card-body">
               <h5 class="card-title"><%= category.name %></h5>
-              <p class="card-text"><%= category.color %></p>
+              <input value="<%= category.color %>" type="hidden">
               <input value="<%= category._id %>" type="hidden">
             </div>
           </div>
@@ -29,12 +29,14 @@
           <div class="mb-3">
             <input type="text" class="form-control" name="name" id="edit-modal-name">
           </div>
-          <!-- <div class="mb-3">
-            <textarea type="text" class="form-control" name="content" 
-            style="min-height: 150px;"
-            id="edit-modal-content">
-            </textarea>
-          </div> -->
+
+          <select class="form-select form-select-lg mb-3" name="color" id="edit-modal-color">
+            <% colorsEnum.forEach(value => { %>
+              <option value="<%= value %>"><%= value %></option>  
+            <% }); %>
+          </select>
+
+
           <button type="submit" class="btn btn-success">Update</button>
           <a class="btn btn-danger"
             onclick="event.preventDefault(); document.getElementById('form-delete').submit();">Delete</a>
@@ -62,7 +64,7 @@
         element.onclick = function() {
           modal.style.display = "block";
           document.getElementById("edit-modal-name").value = element.children[0].innerHTML;
-          // document.getElementById("edit-modal-content").value = element.children[1].innerHTML;
+          document.getElementById("edit-modal-color").value = element.children[1].value;
           document.querySelector(".modal-content #form-update").action = `/users/<%= user._id%>/categories/${element.children[2].value}?_method=PUT`;
           document.querySelector(".modal-content #form-delete").action = `/users/<%= user._id%>/categories/${element.children[2].value}?_method=DELETE`;
           // notes/user._id?_method=DELETE

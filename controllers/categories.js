@@ -1,4 +1,6 @@
 const express = require("express");
+const { getNoteBgColor } = require("../helper/helper.js");
+
 const router = express.Router();
 
 const User = require("../models/user.js");
@@ -7,8 +9,17 @@ module.exports = router;
 
 // index
 router.get("/", async (req, res) => {
+  const colorEnumValues = User.schema
+  .path("categories")
+  .schema.path("color").enumValues;
+
   const userInDb = await User.findById(req.session.user._id);
-  res.render("categories/index.ejs", { categories: userInDb.categories });
+
+  res.render("categories/index.ejs", {
+    categories: userInDb.categories,
+    getNoteBgColor: getNoteBgColor,
+    colorsEnum: colorEnumValues
+  });
 });
 
 // new
