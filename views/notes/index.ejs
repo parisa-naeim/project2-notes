@@ -9,14 +9,12 @@
     <div class="container mt-5">
     <h4>My Notes</h4>
     <div>
-
-
-      <% notes.forEach( (value, key) => { %>
+      <% notes.forEach((value, key) => { %>
+        <% if(key !== "Uncategorised"){ %>
         <div>
           <div class="mt-5">
             <h5><%= key.split(",")[0] %></h5>
           </div>
-
       <div class="notes-container">
         <% value.forEach(note => { %>
         <div class="card mb-3 note" style="background-color: <%= getNoteBgColor(key.split(',')[1]) %>" role="button">
@@ -28,10 +26,29 @@
         </div>
       <%}) %>
     </div>
-    </div>
-      <%}); %>
+    <%}}) %>
     </div>
 
+    <% notes.forEach((value, key) => { %>
+      <% if(key === "Uncategorised"){ %>
+      <div>
+        <div class="mt-5">
+          <h5><%= key.split(",")[0] %></h5>
+        </div>
+    <div class="notes-container">
+      <% value.forEach(note => { %>
+      <div class="card mb-3 note" style="background-color: <%= getNoteBgColor(key.split(',')[1]) %>" role="button">
+        <div class="card-body">
+          <h5 class="card-title"><%= note.title %></h5>
+          <p class="card-text pre-wrap"><%= note.content %></p>
+          <input value="<%= note._id %>" type="hidden">
+        </div>
+      </div>
+    <%}) %>
+  </div>
+  <%}}) %>
+  </div>
+    </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
     <!-- Modal content -->

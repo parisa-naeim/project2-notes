@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
       (item) => item._id == req.params.id
     );
     user.categories[index].name = req.body.name;
-    // user.categories[index].color = req.body.color;
+    user.categories[index].color = req.body.color;
     await user.save();
     res.redirect(`/users/${req.session.user._id}/categories`);
   } catch (error) {
