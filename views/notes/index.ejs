@@ -12,14 +12,14 @@
 
 
       <% notes.forEach( (value, key) => { %>
-        <div >
-          <div>
-        <h5 ><%= key.split(",")[0] %></h5>
-      </div>
+        <div>
+          <div class="mt-5">
+            <h5><%= key.split(",")[0] %></h5>
+          </div>
 
       <div class="notes-container">
         <% value.forEach(note => { %>
-        <div class="card mb-3 note" style="background-color: <%= key.split(',')[1] %>" role="button">
+        <div class="card mb-3 note" style="background-color: <%= getNoteBgColor(key.split(',')[1]) %>" role="button">
           <div class="card-body">
             <h5 class="card-title"><%= note.title %></h5>
             <p class="card-text pre-wrap"><%= note.content %></p>
@@ -30,12 +30,6 @@
     </div>
     </div>
       <%}); %>
-
-
-      
-
-
-        
     </div>
 
     <!-- The Modal -->
@@ -70,9 +64,6 @@
     <script>
       // Get the modal
       var modal = document.getElementById("myModal");
-  
-      // Get the button that opens the modal
-      // var btn = document.getElementById("myBtn");
   
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];

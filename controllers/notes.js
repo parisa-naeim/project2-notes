@@ -5,6 +5,27 @@ const User = require("../models/user.js");
 
 module.exports = router;
 
+const getNoteBgColor = (color) => {
+  //"yellow", "brown", "blue", "pink", "white", "orange"
+
+  switch (color) {
+    case "yellow":
+      return "#FFE675";
+    case "blue":
+      return "#B3DFF5";
+    case "brown":
+      return "#C2A08C";
+    case "pink":
+      return "#F6C8C4";
+    case "white":
+      return "#FFFFFF";
+    case "orange":
+      return "#F3AF70";
+    default:
+      return "#FFE675";
+  }
+};
+
 // all users notes page
 router.get("/", async (req, res) => {
   const userInDb = await User.findById(req.session.user._id);
@@ -25,7 +46,10 @@ router.get("/", async (req, res) => {
     groupedNotes.set(key, notesArr);
   });
 
-  res.render("notes/index.ejs", { notes: groupedNotes });
+  res.render("notes/index.ejs", {
+    notes: groupedNotes,
+    getNoteBgColor: getNoteBgColor,
+  });
 });
 
 // new note page
