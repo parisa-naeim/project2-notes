@@ -15,6 +15,9 @@
           <a class="nav-link" href="/users/<%=user._id%>/notes" id="nav-item-notes">Notes</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="/users/<%=user._id%>/categories" id="nav-item-categories">Categories</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="/auth/sign-out" id="nav-item-signout">Sign out</a>
         </li>
         <% } else { %>
@@ -42,6 +45,8 @@
     
     if (currentUrl.includes('/notes')) {
       document.getElementById('nav-item-notes').classList.add('active');
+    } else if (currentUrl.includes('/categories')) {
+      document.getElementById('nav-item-categories').classList.add('active');
     } else if (currentUrl.includes('/sign-out')) {
       document.getElementById('nav-item-signout').classList.add('active');
     } else if (currentUrl.includes('/sign-in')) {

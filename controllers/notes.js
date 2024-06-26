@@ -8,12 +8,31 @@ module.exports = router;
 // all users notes page
 router.get("/", async (req, res) => {
   const userInDb = await User.findById(req.session.user._id);
-  res.render("notes/index.ejs", { notes: userInDb.notes });
+
+  const groupedNotes = new Map();
+
+  // categorise notes based on their category
+  userInDb.notes.forEach((note) => {
+    const category = userInDb.categories.filter(
+      (c) => c._id.toString() === note.category.toString()
+    )[0];
+    const key = `${category.name},${category.color}`;
+    if (!groupedNotes.get(key)) {
+      groupedNotes.set(key, []);
+    }
+    const notesArr = groupedNotes.get(key);
+    notesArr.push(note);
+    groupedNotes.set(key, notesArr);
+  });
+
+  res.render("notes/index.ejs", { notes: groupedNotes });
 });
 
 // new note page
-router.get("/new", (req, res) => {
-  res.render("notes/new.ejs");
+router.get("/new", async (req, res) => {
+  const userInDb = await User.findById(req.session.user._id);
+  console.log(userInDb);
+  res.render("notes/new.ejs", { categories: userInDb.categories });
 });
 
 // create a new note
@@ -47,16 +66,16 @@ router.put("/:id", async (req, res) => {
 // delete
 router.delete("/:id", async (req, res) => {
   try {
-      console.log("second log;jdg");
-      const user = await User.findById(req.session.user._id);
-      const index = user.notes.findIndex((item) => item._id == req.params.id);
+    console.log("second log;jdg");
+    const user = await User.findById(req.session.user._id);
+    const index = user.notes.findIndex((item) => item._id == req.params.id);
 
-      user.notes.splice(index, 1);
-      await user.save();
+    user.notes.splice(index, 1);
+    await user.save();
 
-      res.redirect(`/users/${req.session.user._id}/notes`);
+    res.redirect(`/users/${req.session.user._id}/notes`);
   } catch (error) {
-      console.log(error);
-      res.redirect("/");
+    console.log(error);
+    res.redirect("/");
   }
 });

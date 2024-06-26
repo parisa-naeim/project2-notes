@@ -18,6 +18,11 @@
         <label for="content" class="form-label">Content</label>
         <textarea class="form-control" placeholder="Your note content goes here" id="content" name="content"></textarea>
       </div>
+      <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="category">
+        <% categories.forEach(value => { %>
+          <option value="<%= value._id %>"><%= value.name %></option>  
+        <% }); %>
+      </select>
 
       <button type="submit" class="btn btn-primary">Submit</button>
       <a href="../notes" class="btn btn-secondary">Cancel</a>

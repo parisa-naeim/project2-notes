@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Notes</title>
+    <title>My Categories</title>
     <%- include('../partials/_head.ejs') %>
   </head>
   <body>
     <%- include('../partials/_navbar.ejs') %>
     <div class="container mt-5">
-    <h4>My Notes</h4>
+    <h4>My Categories</h4>
     <div>
-
-
-      <% notes.forEach( (value, key) => { %>
-        <div >
-          <div>
-        <h5 ><%= key.split(",")[0] %></h5>
-      </div>
-
-      <div class="notes-container">
-        <% value.forEach(note => { %>
-        <div class="card mb-3 note" style="background-color: <%= key.split(',')[1] %>" role="button">
-          <div class="card-body">
-            <h5 class="card-title"><%= note.title %></h5>
-            <p class="card-text pre-wrap"><%= note.content %></p>
-            <input value="<%= note._id %>" type="hidden">
+        <% categories.forEach(category => { %>
+          <div class="card mb-3 note" role="button">
+            <div class="card-body">
+              <h5 class="card-title"><%= category.name %></h5>
+              <p class="card-text"><%= category.color %></p>
+              <input value="<%= category._id %>" type="hidden">
+            </div>
           </div>
-        </div>
-      <%}) %>
-    </div>
-    </div>
-      <%}); %>
-
-
-      
-
-
-        
+        <%}); %>
     </div>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
     <!-- Modal content -->
-      <div class="modal-content card mb-3 container" style="background-color: #FFF3CD;">
+      <div class="modal-content card mb-3 container">
         <span class="close">&times;</span>
         <form action="" method="POST" id="form-update">
           <div class="mb-3">
-            <input type="text" class="form-control" name="title" id="edit-modal-title">
+            <input type="text" class="form-control" name="name" id="edit-modal-name">
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <textarea type="text" class="form-control" name="content" 
             style="min-height: 150px;"
             id="edit-modal-content">
             </textarea>
-          </div>
+          </div> -->
           <button type="submit" class="btn btn-success">Update</button>
           <a class="btn btn-danger"
             onclick="event.preventDefault(); document.getElementById('form-delete').submit();">Delete</a>
@@ -64,15 +46,12 @@
       </div>
     </div>
 
-    <a href="notes/new">Add New Note</a>
+    <a href="categories/new">Add New Category</a>
   </div>
 
     <script>
       // Get the modal
       var modal = document.getElementById("myModal");
-  
-      // Get the button that opens the modal
-      // var btn = document.getElementById("myBtn");
   
       // Get the <span> element that closes the modal
       var span = document.getElementsByClassName("close")[0];
@@ -82,10 +61,10 @@
       .forEach(element => {
         element.onclick = function() {
           modal.style.display = "block";
-          document.getElementById("edit-modal-title").value = element.children[0].innerHTML;
-          document.getElementById("edit-modal-content").value = element.children[1].innerHTML;
-          document.querySelector(".modal-content #form-update").action = `/users/<%= user._id%>/notes/${element.children[2].value}?_method=PUT`;
-          document.querySelector(".modal-content #form-delete").action = `/users/<%= user._id%>/notes/${element.children[2].value}?_method=DELETE`;
+          document.getElementById("edit-modal-name").value = element.children[0].innerHTML;
+          // document.getElementById("edit-modal-content").value = element.children[1].innerHTML;
+          document.querySelector(".modal-content #form-update").action = `/users/<%= user._id%>/categories/${element.children[2].value}?_method=PUT`;
+          document.querySelector(".modal-content #form-delete").action = `/users/<%= user._id%>/categories/${element.children[2].value}?_method=DELETE`;
           // notes/user._id?_method=DELETE
         }
       })
