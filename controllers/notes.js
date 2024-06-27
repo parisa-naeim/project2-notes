@@ -76,7 +76,6 @@ router.put("/:id", async (req, res) => {
 // delete
 router.delete("/:id", async (req, res) => {
   try {
-    console.log("second log;jdg");
     const user = await User.findById(req.session.user._id);
     const index = user.notes.findIndex((item) => item._id == req.params.id);
 
