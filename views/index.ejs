@@ -4,13 +4,16 @@
   <%- include('partials/_head.ejs') %>
   <title>Home Page</title>
 </head>
-<body>
+<body class="home-container">
   <%- include('./partials/_navbar.ejs') %>
   <div class="container mt-5">
     <% if (user) { %>
-      <h4>Welcome to the Notes app, <%= user.username %>!</h4>
+      <h4>Give me your Notes, I look after them <%= user.username %>!</h4>
     <% } else { %>
-      <h4>Welcome to the app, guest.</h4>
+      <h4>Keep your notes securely in the cloud using Notes app and access it from anywhere.</h4>
+      <h5>Please  <a href="auth/sign-in">sign in</a> or <a href="auth/sign-up">sign up</a> to start.</h5>
+      <a href="sign-in"></a>
+      <a href="sign-up"></a>
     <% } %>
   </div>
 </body>

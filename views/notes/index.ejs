@@ -8,6 +8,7 @@
     <%- include('../partials/_navbar.ejs') %>
     <div class="container mt-5">
     <h4>My Notes</h4>
+    <a href="notes/new">Add New Note</a>
     <div>
       <% notes.forEach((value, key) => { %>
         <% if(key !== "Uncategorised"){ %>
@@ -17,7 +18,7 @@
           </div>
       <div class="notes-container">
         <% value.forEach(note => { %>
-        <div class="card mb-3 note" style="background-color: <%= getNoteBgColor(key.split(',')[1]) %>" role="button">
+        <div class="card mb-3 note shadow" style="background-color: <%= getNoteBgColor(key.split(',')[1]) %>" role="button">
           <div class="card-body">
             <h5 class="card-title"><%= note.title %></h5>
             <p class="card-text pre-wrap"><%= note.content %></p>
@@ -75,7 +76,7 @@
       </div>
     </div>
 
-    <a href="notes/new">Add New Note</a>
+
   </div>
 
     <script>

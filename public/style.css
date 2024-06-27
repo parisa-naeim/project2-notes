@@ -1,3 +1,7 @@
+body {
+  background-image: url("paper.jpg");
+}
+
 nav a {
   padding-right: 10px;
 }
@@ -10,7 +14,15 @@ nav a {
   /* min-height: 300px; */
   flex-wrap: wrap;
 }
-
+.home-container {
+  background-image: url("note-image.webp");
+  background-attachment: fixed;
+  background-size: cover;
+}
+.home-container .container {
+  color: white;
+  margin-left: 40%;
+}
 .note {
   max-width: 18rem;
   min-width: 18rem;
